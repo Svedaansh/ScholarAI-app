@@ -1,23 +1,41 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, Brain, TrendingUp, Award, Users, Star } from "lucide-react";
-
 const Landing = () => {
-  const features = [
-    { icon: Brain, title: "AI Doubt Solver", description: "Get instant explanations 24/7" },
-    { icon: BookOpen, title: "Unlimited Practice", description: "Access thousands of questions" },
-    { icon: TrendingUp, title: "Progress Tracking", description: "See your improvement daily" },
-    { icon: Award, title: "Gamified Learning", description: "Earn badges and maintain streaks" },
-  ];
-
-  const testimonials = [
-    { name: "Priya Sharma", class: "Class 10, CBSE", text: "Improved my math score from 72% to 95% in 3 months!", rating: 5 },
-    { name: "Arjun Patel", class: "Class 12, ICSE", text: "The mock tests helped me ace my boards. Highly recommend!", rating: 5 },
-    { name: "Sneha Reddy", class: "Class 8, State Board", text: "Best study app ever! Makes learning actually fun.", rating: 5 },
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const features = [{
+    icon: Brain,
+    title: "AI Doubt Solver",
+    description: "Get instant explanations 24/7"
+  }, {
+    icon: BookOpen,
+    title: "Unlimited Practice",
+    description: "Access thousands of questions"
+  }, {
+    icon: TrendingUp,
+    title: "Progress Tracking",
+    description: "See your improvement daily"
+  }, {
+    icon: Award,
+    title: "Gamified Learning",
+    description: "Earn badges and maintain streaks"
+  }];
+  const testimonials = [{
+    name: "Priya Sharma",
+    class: "Class 10, CBSE",
+    text: "Improved my math score from 72% to 95% in 3 months!",
+    rating: 5
+  }, {
+    name: "Arjun Patel",
+    class: "Class 12, ICSE",
+    text: "The mock tests helped me ace my boards. Highly recommend!",
+    rating: 5
+  }, {
+    name: "Sneha Reddy",
+    class: "Class 8, State Board",
+    text: "Best study app ever! Makes learning actually fun.",
+    rating: 5
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="border-b bg-background/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container flex items-center justify-between h-16">
@@ -56,9 +74,7 @@ const Landing = () => {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Button size="lg" variant="outline">
-                Watch Demo
-              </Button>
+              
             </div>
             <div className="flex items-center justify-center gap-6 pt-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -86,19 +102,15 @@ const Landing = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <div
-                key={feature.title}
-                className="bg-card p-6 rounded-xl border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+            {features.map((feature, index) => <div key={feature.title} className="bg-card p-6 rounded-xl border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{
+            animationDelay: `${index * 100}ms`
+          }}>
                 <div className="w-12 h-12 rounded-lg gradient-hero flex items-center justify-center mb-4 animate-pulse-glow">
                   <feature.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-heading font-semibold text-lg mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground text-sm">{feature.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -115,24 +127,20 @@ const Landing = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={testimonial.name}
-                className="bg-card p-6 rounded-xl border shadow-sm animate-fade-in"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
+            {testimonials.map((testimonial, index) => <div key={testimonial.name} className="bg-card p-6 rounded-xl border shadow-sm animate-fade-in" style={{
+            animationDelay: `${index * 150}ms`
+          }}>
                 <div className="flex gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-warning fill-warning" />
-                  ))}
+                  {Array.from({
+                length: testimonial.rating
+              }).map((_, i) => <Star key={i} className="w-4 h-4 text-warning fill-warning" />)}
                 </div>
                 <p className="text-foreground mb-4">"{testimonial.text}"</p>
                 <div>
                   <p className="font-semibold">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">{testimonial.class}</p>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -171,8 +179,6 @@ const Landing = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Landing;
