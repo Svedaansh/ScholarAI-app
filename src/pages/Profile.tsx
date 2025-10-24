@@ -6,10 +6,12 @@ import { MobileNav } from "@/components/MobileNav";
 import { DesktopSidebar } from "@/components/DesktopSidebar";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { getUserProgress } from "@/lib/userProgress";
 
 const Profile = () => {
   const navigate = useNavigate();
   const userProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
+  const progress = getUserProgress();
   
   const handleLogout = () => {
     localStorage.removeItem("onboardingComplete");
@@ -51,17 +53,17 @@ const Profile = () => {
             <div className="grid md:grid-cols-3 gap-4">
               <Card className="p-4 text-center">
                 <Flame className="w-10 h-10 mx-auto mb-2 text-warning" />
-                <p className="text-2xl font-bold">7</p>
+                <p className="text-2xl font-bold">{progress.streak}</p>
                 <p className="text-sm text-muted-foreground">Day Streak</p>
               </Card>
               <Card className="p-4 text-center">
                 <Star className="w-10 h-10 mx-auto mb-2 text-warning fill-warning" />
-                <p className="text-2xl font-bold">1,250</p>
+                <p className="text-2xl font-bold">{progress.points}</p>
                 <p className="text-sm text-muted-foreground">Scholar Points</p>
               </Card>
               <Card className="p-4 text-center">
                 <Trophy className="w-10 h-10 mx-auto mb-2 text-success" />
-                <p className="text-2xl font-bold">8</p>
+                <p className="text-2xl font-bold">{progress.badges.length}</p>
                 <p className="text-sm text-muted-foreground">Badges Earned</p>
               </Card>
             </div>
@@ -70,10 +72,10 @@ const Profile = () => {
               <h3 className="font-semibold text-lg mb-4">Achievement Gallery</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { name: "Week Warrior", icon: "🔥", unlocked: true },
-                  { name: "Math Master", icon: "🧮", unlocked: true },
-                  { name: "Study Champion", icon: "🏆", unlocked: true },
-                  { name: "Streak Legend", icon: "⚡", unlocked: false },
+                  { name: "Week Warrior", icon: "🔥", unlocked: progress.badges.includes("Week Warrior") },
+                  { name: "Math Master", icon: "🧮", unlocked: progress.badges.includes("Math Master") },
+                  { name: "Study Champion", icon: "🏆", unlocked: progress.badges.includes("Study Champion") },
+                  { name: "Streak Legend", icon: "⚡", unlocked: progress.badges.includes("Streak Legend") },
                 ].map((badge) => (
                   <div
                     key={badge.name}

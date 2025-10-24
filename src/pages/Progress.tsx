@@ -3,8 +3,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { TrendingUp, Target, Award, Clock } from "lucide-react";
 import { MobileNav } from "@/components/MobileNav";
 import { DesktopSidebar } from "@/components/DesktopSidebar";
+import { getUserProgress } from "@/lib/userProgress";
 
 const Progress = () => {
+  const progress = getUserProgress();
   return (
     <div className="min-h-screen bg-background">
       <div className="flex w-full">
@@ -38,7 +40,7 @@ const Progress = () => {
                   <Target className="w-8 h-8 text-primary" />
                   <TrendingUp className="w-4 h-4 text-success" />
                 </div>
-                <p className="text-2xl font-bold">156</p>
+                <p className="text-2xl font-bold">{progress.questionsAttempted}</p>
                 <p className="text-sm text-muted-foreground">Questions Attempted</p>
               </Card>
 
@@ -47,7 +49,7 @@ const Progress = () => {
                   <Award className="w-8 h-8 text-success" />
                   <TrendingUp className="w-4 h-4 text-success" />
                 </div>
-                <p className="text-2xl font-bold">84%</p>
+                <p className="text-2xl font-bold">{progress.accuracy > 0 ? `${progress.accuracy}%` : '0%'}</p>
                 <p className="text-sm text-muted-foreground">Overall Accuracy</p>
               </Card>
 
@@ -56,7 +58,7 @@ const Progress = () => {
                   <Clock className="w-8 h-8 text-warning" />
                   <TrendingUp className="w-4 h-4 text-success" />
                 </div>
-                <p className="text-2xl font-bold">24.5h</p>
+                <p className="text-2xl font-bold">{progress.studyHours}h</p>
                 <p className="text-sm text-muted-foreground">Study Hours</p>
               </Card>
 
@@ -65,7 +67,7 @@ const Progress = () => {
                   <Award className="w-8 h-8 text-secondary" />
                   <TrendingUp className="w-4 h-4 text-success" />
                 </div>
-                <p className="text-2xl font-bold">12</p>
+                <p className="text-2xl font-bold">0</p>
                 <p className="text-sm text-muted-foreground">Concepts Mastered</p>
               </Card>
             </div>

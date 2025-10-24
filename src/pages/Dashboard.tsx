@@ -7,12 +7,22 @@ import {
 } from "lucide-react";
 import { MobileNav } from "@/components/MobileNav";
 import { DesktopSidebar } from "@/components/DesktopSidebar";
+import { getUserProgress, updateStreak } from "@/lib/userProgress";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const userProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
   const userName = userProfile.fullName || "Student";
   const userClass = userProfile.class || "Class 10";
   const userBoard = userProfile.board || "CBSE";
+  
+  const [progress, setProgress] = useState(getUserProgress());
+  
+  useEffect(() => {
+    // Update streak on dashboard visit
+    const updated = updateStreak();
+    setProgress(updated);
+  }, []);
   
   const greeting = () => {
     const hour = new Date().getHours();
@@ -57,14 +67,14 @@ const Dashboard = () => {
                   <div className="text-center">
                     <div className="flex items-center gap-1 bg-white/20 backdrop-blur-sm px-3 py-2 rounded-lg">
                       <Flame className="w-5 h-5 text-warning" />
-                      <span className="font-bold text-lg">7</span>
+                      <span className="font-bold text-lg">{progress.streak}</span>
                     </div>
                     <p className="text-xs mt-1 text-white/80">Day Streak</p>
                   </div>
                   <div className="text-center">
                     <div className="flex items-center gap-1 bg-white/20 backdrop-blur-sm px-3 py-2 rounded-lg">
                       <Sparkles className="w-5 h-5 text-warning" />
-                      <span className="font-bold text-lg">1,250</span>
+                      <span className="font-bold text-lg">{progress.points}</span>
                     </div>
                     <p className="text-xs mt-1 text-white/80">Points</p>
                   </div>

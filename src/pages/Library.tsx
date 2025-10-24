@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Search, BookOpen, FileText, Video } from "lucide-react";
 import { MobileNav } from "@/components/MobileNav";
 import { DesktopSidebar } from "@/components/DesktopSidebar";
+import { toast } from "sonner";
 
 const Library = () => {
   const subjects = [
@@ -47,15 +48,30 @@ const Library = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Button variant="outline" size="sm" className="w-full justify-start">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full justify-start"
+                      onClick={() => toast.info(`${subject.name} practice questions coming soon!`)}
+                    >
                       <BookOpen className="mr-2 w-4 h-4" />
                       Practice Questions
                     </Button>
-                    <Button variant="outline" size="sm" className="w-full justify-start">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full justify-start"
+                      onClick={() => toast.info(`${subject.name} sample papers coming soon!`)}
+                    >
                       <FileText className="mr-2 w-4 h-4" />
                       Sample Papers
                     </Button>
-                    <Button variant="outline" size="sm" className="w-full justify-start">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full justify-start"
+                      onClick={() => toast.info(`${subject.name} video lessons coming soon!`)}
+                    >
                       <Video className="mr-2 w-4 h-4" />
                       Video Lessons
                     </Button>

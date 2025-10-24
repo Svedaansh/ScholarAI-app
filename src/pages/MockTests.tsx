@@ -4,8 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, FileText, Trophy } from "lucide-react";
 import { MobileNav } from "@/components/MobileNav";
 import { DesktopSidebar } from "@/components/DesktopSidebar";
+import { getUserProgress } from "@/lib/userProgress";
+import { toast } from "sonner";
 
 const MockTests = () => {
+  const progress = getUserProgress();
   const tests = [
     {
       title: "Mathematics Full-Length Board Exam",
@@ -50,17 +53,17 @@ const MockTests = () => {
             <div className="grid md:grid-cols-3 gap-4">
               <Card className="p-4 text-center bg-primary/5 border-primary/20">
                 <Trophy className="w-10 h-10 mx-auto mb-2 text-primary" />
-                <p className="font-bold text-2xl">15</p>
+                <p className="font-bold text-2xl">{progress.testsCompleted}</p>
                 <p className="text-sm text-muted-foreground">Tests Completed</p>
               </Card>
               <Card className="p-4 text-center bg-success/5 border-success/20">
                 <FileText className="w-10 h-10 mx-auto mb-2 text-success" />
-                <p className="font-bold text-2xl">82%</p>
+                <p className="font-bold text-2xl">{progress.averageScore > 0 ? `${progress.averageScore}%` : '0%'}</p>
                 <p className="text-sm text-muted-foreground">Average Score</p>
               </Card>
               <Card className="p-4 text-center bg-warning/5 border-warning/20">
                 <Clock className="w-10 h-10 mx-auto mb-2 text-warning" />
-                <p className="font-bold text-2xl">12h</p>
+                <p className="font-bold text-2xl">{progress.totalStudyTime}</p>
                 <p className="text-sm text-muted-foreground">Total Study Time</p>
               </Card>
             </div>
@@ -101,11 +104,11 @@ const MockTests = () => {
                     <div className="flex gap-2">
                       {test.lastScore !== null ? (
                         <>
-                          <Button variant="outline">Review</Button>
-                          <Button className="gradient-hero text-white">Retake</Button>
+                          <Button variant="outline" onClick={() => toast.info("Review feature coming soon!")}>Review</Button>
+                          <Button className="gradient-hero text-white" onClick={() => toast.success("Starting test...")}>Retake</Button>
                         </>
                       ) : (
-                        <Button className="gradient-hero text-white">Start Test</Button>
+                        <Button className="gradient-hero text-white" onClick={() => toast.success("Starting test...")}>Start Test</Button>
                       )}
                     </div>
                   </div>

@@ -52,6 +52,22 @@ const Onboarding = () => {
     localStorage.setItem("onboardingComplete", "true");
     localStorage.setItem("userProfile", JSON.stringify(formData));
     
+    // Initialize user progress for new account
+    const newProgress = {
+      streak: 0,
+      points: 0,
+      questionsAttempted: 0,
+      accuracy: 0,
+      studyHours: 0,
+      testsCompleted: 0,
+      averageScore: 0,
+      totalStudyTime: "0h",
+      badges: [],
+      lastActiveDate: new Date().toISOString().split('T')[0],
+      createdAt: new Date().toISOString().split('T')[0],
+    };
+    localStorage.setItem("userProgress", JSON.stringify(newProgress));
+    
     // Celebration
     toast.success("You're all set! Let's start learning 🚀");
     setTimeout(() => {
