@@ -1,0 +1,4 @@
+project_id = "wbydmlzrqsddknbocmix"
+
+[functions.generate-mock-test]
+verify_jwt = false

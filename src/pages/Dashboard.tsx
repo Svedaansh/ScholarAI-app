@@ -46,11 +46,11 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/5">
       <div className="flex w-full">
         <DesktopSidebar />
         
-        <main className="flex-1 pb-20 md:pb-8">
+        <main className="flex-1 md:ml-64 pb-20 md:pb-8">
           {/* Header */}
           <div className="gradient-hero text-white p-6 md:p-8">
             <div className="max-w-7xl mx-auto">
